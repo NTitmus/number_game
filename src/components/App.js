@@ -22,11 +22,36 @@ const App = () => {
         value: 3}
 
     ]
+    const numButtons = numbers.length;
 
     //Add to total when button pressed
     const addToTotal = (n) => {
         console.log('from app', n.target.value)
         setTotal(total+Number(n.target.value))
+        
+    }
+
+    const player2TurnFunc = () => {
+        //const looper = (a) =>{
+        //    if (a<total){
+        //        return a+(numButtons+1);
+        //    }
+        //    return looper(a-(numButtons+1))
+        //}
+        //const x = looper(target)
+        //console.log('x is', x)
+
+        const floorDivisionResult = Math.floor((target-total)/(numButtons+1));
+        console.log('fd', floorDivisionResult)
+        const x = target-(floorDivisionResult*(numButtons+1));
+        if (x>total){
+            console.log('x is', x)
+            setTotal(x);
+        } else {
+            console.log('****')
+            setTotal(total+1);
+
+        }
         
     }
 
@@ -36,6 +61,13 @@ const App = () => {
             setWin(true);
         }
         if(total===0||total===target){return}
+
+        if(player1Turn){
+            const timerId = setTimeout(()=>player2TurnFunc(), 2000);
+            setPlayer1Turn(!player1Turn);
+            return () => clearTimeout(timerId)
+        }
+
         setPlayer1Turn(!player1Turn);
         
     },[total])
