@@ -1,16 +1,20 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import ButtonBar from './ButtonBar';
+import CModal from './CModal';
+
 
 const App = () => {
 
     //State - total number
     const [total, setTotal] = useState(0);
     const [win, setWin] = useState(false);
-    const [player1Turn, setPlayer1Turn] = useState(true)
+    const [player1Turn, setPlayer1Turn] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [target, setTarget] = useState(10);
 
     //Target number
-    const target = 10;
+    
 
     //Array of possible buttons to pass into ButtonBar
     const numbers = [
@@ -26,7 +30,7 @@ const App = () => {
 
     //Add to total when button pressed
     const addToTotal = (n) => {
-        console.log('from app', n.target.value)
+        
         setTotal(total+Number(n.target.value))
         
     }
@@ -42,13 +46,11 @@ const App = () => {
         //console.log('x is', x)
 
         const floorDivisionResult = Math.floor((target-total)/(numButtons+1));
-        console.log('fd', floorDivisionResult)
+        
         const x = target-(floorDivisionResult*(numButtons+1));
         if (x>total){
-            console.log('x is', x)
             setTotal(x);
         } else {
-            console.log('****')
             setTotal(total+1);
 
         }
@@ -57,25 +59,40 @@ const App = () => {
 
     //Check if person has won
     useEffect(()=>{
-        if(total===target){
+        console.log('target is', target)
+        console.log('player ', player1Turn)
+        console.log('total', total)
+        console.log('=', (Number(total)===Number(target)))
+        
+        if(Number(total)===Number(target)){
+            console.log('win!')
             setWin(true);
+            return;
         }
-        if(total===0||total===target){return}
+        if(total===0){return}
 
         if(player1Turn){
             const timerId = setTimeout(()=>player2TurnFunc(), 2000);
             setPlayer1Turn(!player1Turn);
-            return () => clearTimeout(timerId)
+            return () => {console.log('clearing timer');clearTimeout(timerId)}
         }
 
         setPlayer1Turn(!player1Turn);
         
-    },[total])
+    },[total, target])
 
     const showPlayer = player1Turn ? <h3 style={{color:'orange'}}>Player 1</h3> : <h3 style={{color:'blue'}}>Player 2</h3>
     const showWin = win ? <div style={{color:'red'}}>{showPlayer} WINS!</div> : null;
 
-    
+    const closeModal = () => {
+        setShowModal(false);
+    }
+
+    const onFormSubmit = (a) => {
+        console.log('%%%',a);
+        setTarget(a);
+        closeModal();
+    }
 
     return (
         <div>
@@ -88,6 +105,9 @@ const App = () => {
             onButtonPress={(num)=>addToTotal(num)}/>
             <h1>{total}</h1>
             {showWin}
+            <button onClick={()=>setShowModal(true)}>Show Modal</button>
+            <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a)=>onFormSubmit(a)}/>
+            
         </div>
     );
 
