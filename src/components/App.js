@@ -28,6 +28,8 @@ const App = () => {
     ]
     const numButtons = numbers.length;
 
+    const [buttonList, setButtonList] = useState(numbers);
+
     //Add to total when button pressed
     const addToTotal = (n) => {
         
@@ -59,6 +61,7 @@ const App = () => {
 
     //Check if person has won
     useEffect(()=>{
+        console.log(numbers)
         console.log('target is', target)
         console.log('player ', player1Turn)
         console.log('total', total)
@@ -88,25 +91,30 @@ const App = () => {
         setShowModal(false);
     }
 
-    const onFormSubmit = (a) => {
-        console.log('%%%',a);
+    const onFormSubmit = (a, b) => {
+        console.log('%%%', b);
+        const tempList = Array.from(Array(Number(b)).keys());
+        const newList= tempList.map((i)=>{return({label:`Number ${Number(i)+1}`, value:(Number(i)+1)})});
+        console.log('{', newList)
+        setButtonList(newList)
         setTarget(a);
         closeModal();
     }
 
+    
     return (
         <div>
             <h2>Number Game</h2>
             <p>{`The target is ${target}`}</p>
             {showPlayer}
-            <ButtonBar numberList={numbers} 
+            <ButtonBar numberList={buttonList} 
             total={total} 
             target={target}
             onButtonPress={(num)=>addToTotal(num)}/>
             <h1>{total}</h1>
             {showWin}
             <button onClick={()=>setShowModal(true)}>Show Modal</button>
-            <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a)=>onFormSubmit(a)}/>
+            <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a, b)=>onFormSubmit(a,b)}/>
             
         </div>
     );
