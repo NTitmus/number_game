@@ -30,6 +30,11 @@ const App = () => {
         
     }
 
+    const resetGame = () => {
+        setPlayer1Turn(true);
+        setTotal(0);
+    }
+
     //Check if person has won
     useEffect(()=>{
         if(total===target){
@@ -56,6 +61,7 @@ const App = () => {
             onButtonPress={(num)=>addToTotal(num)}/>
             <h1>{total}</h1>
             {showWin}
+            <button onClick={()=>resetGame()}>Reset</button>
         </div>
     );
 
