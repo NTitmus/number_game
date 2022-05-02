@@ -43,18 +43,12 @@ const App = () => {
     }
     
     const player2TurnFunc = () => {
-        //const looper = (a) =>{
-        //    if (a<total){
-        //        return a+(numButtons+1);
-        //    }
-        //    return looper(a-(numButtons+1))
-        //}
-        //const x = looper(target)
-        //console.log('x is', x)
-
-        const floorDivisionResult = Math.floor((target-total)/(numButtons+1));
         
-        const x = target-(floorDivisionResult*(numButtons+1));
+        const count_buttonList = buttonList.length
+        const floorDivisionResult = Math.floor((target-total)/(count_buttonList+1));
+        
+        const x = target-(floorDivisionResult*(count_buttonList+1));
+        
         if (x>total){
             setTotal(x);
         } else {
@@ -66,14 +60,10 @@ const App = () => {
 
     //Check if person has won
     useEffect(()=>{
-        console.log(numbers)
-        console.log('target is', target)
-        console.log('player ', player1Turn)
-        console.log('total', total)
-        console.log('=', (Number(total)===Number(target)))
+        
         
         if(Number(total)===Number(target)){
-            console.log('win!')
+            
             setWin(true);
             return;
         }
@@ -97,10 +87,10 @@ const App = () => {
     }
 
     const onFormSubmit = (a, b) => {
-        console.log('%%%', b);
+        
         const tempList = Array.from(Array(Number(b)).keys());
         const newList= tempList.map((i)=>{return({label:`Number ${Number(i)+1}`, value:(Number(i)+1)})});
-        console.log('{', newList)
+    
         setButtonList(newList)
         setTarget(a);
         closeModal();
