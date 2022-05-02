@@ -1,13 +1,13 @@
 import React from 'react';
 import {useState} from 'react';
 
-const ButtonBar = ({numberList, total, onButtonPress}) => {
+const ButtonBar = ({numberList, total, onButtonPress, target}) => {
     //Too big state
     const [displayError, setDisplayError] = useState(false)
     
     const onButtonClick = (a) => {
         console.log(a.target.value);
-        if ((Number(a.target.value)+total)>10) {
+        if ((Number(a.target.value)+total)>target) {
             setDisplayError(true);
         } else {
             setDisplayError(false);
