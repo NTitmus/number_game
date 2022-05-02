@@ -11,6 +11,21 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
         console.log(event.target)
         //The first digit must be 1-9, but any subsequent digits can be 0-9.
         //Currently set to 1 additional digit (ie up to 2 digit number)
+        
+        //const re = new RegExp('^[1-9][0-9]{0,1}$');
+        
+        //if (re.test(selectedTarget.toString())){
+        //    setTargetError('');
+        ///    console.log('if is true')
+        //    onFSubmit(selectedTarget, sliderValue);
+        //} else {
+        //    console.log('Error in target amount')
+        //    setTargetError('Error - Target should be 1-99')
+        //}
+        
+    }
+
+    const onPressSubmit = () => {
         const re = new RegExp('^[1-9][0-9]{0,1}$');
         
         if (re.test(selectedTarget.toString())){
@@ -21,7 +36,6 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
             console.log('Error in target amount')
             setTargetError('Error - Target should be 1-99')
         }
-        
     }
 
     const onChangeField = (e) => {
@@ -61,6 +75,7 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
                     value={sliderValue}
                     onChange={(e)=>onChangeSlider(e)}
                     />
+                    <h3>{sliderValue}</h3>
                     <br/>
                     <label className='error-msg'>{targetError}</label>
                 </div>
@@ -68,6 +83,7 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
             </div>
             <div className='modal-footer'>
                 <button className='button' type='button' onClick={()=>onCloseModal()}>Back</button>
+                <button className='button' type='button' onClick={()=>onPressSubmit()}>Submit</button>
             </div>
             </div>
         </div>

@@ -40,6 +40,7 @@ const App = () => {
     const resetGame = () => {
         setPlayer1Turn(true);
         setTotal(0);
+        setWin(false);
     }
     const player2TurnFunc = () => {
         
@@ -104,7 +105,8 @@ const App = () => {
             <ButtonBar numberList={buttonList} 
             total={total} 
             target={target}
-            onButtonPress={(num)=>addToTotal(num)}/>
+            onButtonPress={(num)=>addToTotal(num)}
+            player={player1Turn}/>
             <h1>{total}</h1>
             {showWin}
             <button onClick={()=>resetGame()}>Reset</button>
