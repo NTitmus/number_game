@@ -79,8 +79,8 @@ const App = () => {
         
     },[total, target])
 
-    const showPlayer = player1Turn ? <h3 style={{color:'orange'}}>Player 1</h3> : <h3 style={{color:'blue'}}>Player 2</h3>
-    const showWin = win ? <div style={{color:'red'}}>{showPlayer} WINS!</div> : null;
+    const showPlayer = player1Turn ? <h3 className='ui purple header'>Player 1</h3> : <h3 className='ui green header'>Player 2</h3>
+    const showWin = win ? <h3>{showPlayer} WINS!</h3> : null;
 
     const closeModal = () => {
         setShowModal(false);
@@ -98,21 +98,23 @@ const App = () => {
 
     
     return (
-        <div>
+        <div className='ui container'>
+            <div className='ui segment'>
             <h2>Number Game</h2>
-            <p>{`The target is ${target}`}</p>
+            <h3>The target is <div className='ui blue header'>{target}</div></h3>
             {showPlayer}
             <ButtonBar numberList={buttonList} 
             total={total} 
             target={target}
             onButtonPress={(num)=>addToTotal(num)}
             player={player1Turn}/>
-            <h1>{total}</h1>
+            <h1 className='ui blue header'>{total}</h1>
             {showWin}
-            <button onClick={()=>resetGame()}>Reset</button>
-            <button onClick={()=>setShowModal(true)}>Show Modal</button>
-            <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a, b)=>onFormSubmit(a,b)}/>
+            <button className='ui button' onClick={()=>resetGame()}>Reset</button>
+            <button className='ui blue button' onClick={()=>setShowModal(true)}>Show Modal</button>
             
+            <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a, b)=>onFormSubmit(a,b)}/>
+            </div>
         </div>
     );
 

@@ -19,11 +19,12 @@ const ButtonBar = ({numberList, total, onButtonPress, target, player}) => {
 
     const buttonList = numberList.map((item)=>
     {return(
-        <button key={item.label} 
+        <button className='ui orange button'
+        key={item.label} 
         onClick={(a)=>{onButtonClick(a)}} 
         value={item.value}
         disabled={!player}>
-            {item.label}
+            {item.value}
         </button>
         );});
 
@@ -32,7 +33,7 @@ const ButtonBar = ({numberList, total, onButtonPress, target, player}) => {
     return(
         <div className='ui segment'>
             {buttonList}
-            {displayError!=''?(<div>Error - {displayError}</div>):null}
+            {displayError!=''?(<div><h3 className='ui blue header'>Error - {displayError}</h3></div>):null}
         </div>
     );
 }

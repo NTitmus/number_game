@@ -54,20 +54,35 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
 
     return(
         <div className='modal'>
+            <div className='ui segment'>
             <div className='modal-content'>
             <div className='modal-header'>
-            <h1>In the modal</h1>
+            <h1>Settings</h1>
             </div>
             <div className='modal-body'>
-                Modal Content
+                
                 <form onSubmit={(e)=>onFormSubmit(e)}>
+                <div className='ui segment'>
                 <div className='field'>
-                    <label>Target - should have a range 1-99 inclusive</label>
+                    <h2 className='ui header'>Target</h2>
+                    <label>range 1-99 inclusive</label>
                     <br/>
+                    <div className='ui segment'>
                     <input className='input'
                     onChange={(e)=>onChangeField(e)} 
                     value={selectedTarget}/>
+                    </div>
                     <br/>
+                </div>
+                </div>
+
+                <div className='ui segment'>
+                <div className='field'>
+                    <h2 className='ui header'>Number of buttons</h2>
+                    <label>range 1-10 inclusive</label>
+                    <br/>
+                    <div className='ui segment'>
+                    
                     <input 
                     type='range'
                     min='1'
@@ -75,15 +90,20 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
                     value={sliderValue}
                     onChange={(e)=>onChangeSlider(e)}
                     />
-                    <h3>{sliderValue}</h3>
-                    <br/>
-                    <label className='error-msg'>{targetError}</label>
+                    
+                    <label className='ui blue circular label'>{sliderValue}</label>
+                    
+                    </div>
+                    
+                    <label className='error msg'>{targetError}</label>
+                </div>
                 </div>
                 </form>
             </div>
             <div className='modal-footer'>
-                <button className='button' type='button' onClick={()=>onCloseModal()}>Back</button>
-                <button className='button' type='button' onClick={()=>onPressSubmit()}>Submit</button>
+                <button className='ui button' type='button' onClick={()=>onCloseModal()}>Back</button>
+                <button className='ui blue button' type='button' onClick={()=>onPressSubmit()}>Submit</button>
+            </div>
             </div>
             </div>
         </div>
