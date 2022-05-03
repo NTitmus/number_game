@@ -40,13 +40,9 @@ const App = () => {
     const resetGame = () => {
         setPlayer1Turn(true);
         setTotal(0);
-<<<<<<< HEAD
-    }
-    
-=======
         setWin(false);
     }
->>>>>>> tidy
+
     const player2TurnFunc = () => {
         
         const count_buttonList = buttonList.length
@@ -119,6 +115,7 @@ const App = () => {
             <button onClick={()=>setShowModal(true)}>Show Modal</button>
             <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a, b)=>onFormSubmit(a,b)}/>
             
+        </div>
         </div>
     );
 
