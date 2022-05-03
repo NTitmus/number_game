@@ -111,8 +111,8 @@ const App = () => {
             player={player1Turn}/>
             <h1 className='ui blue header'>{total}</h1>
             {showWin}
-            <button onClick={()=>resetGame()}>Reset</button>
-            <button onClick={()=>setShowModal(true)}>Show Modal</button>
+            <button className='ui button' onClick={()=>resetGame()}>Reset</button>
+            <button className='ui blue button' onClick={()=>setShowModal(true)}>Show Modal</button>
             <CModal show={showModal} onCloseModal={()=>closeModal()} onFSubmit={(a, b)=>onFormSubmit(a,b)}/>
             
         </div>
