@@ -8,10 +8,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
 }
 
-.modal-content{
+.modal-content {
     width: 500px;
     background-color: #fff;
 }
