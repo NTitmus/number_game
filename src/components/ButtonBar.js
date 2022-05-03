@@ -33,7 +33,7 @@ const ButtonBar = ({numberList, total, onButtonPress, target, player}) => {
     return(
         <div className='ui segment'>
             {buttonList}
-            {displayError!=''?(<div><h3 className='ui blue header'>Error - {displayError}</h3></div>):null}
+            {displayError!==''?(<div><h3 className='ui blue header'>Error - {displayError}</h3></div>):null}
         </div>
     );
 }
