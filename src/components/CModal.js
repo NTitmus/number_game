@@ -54,7 +54,7 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
 
     return(
         <div className='modal'>
-            <div className='ui segment'>
+            
             <div className='modal-content'>
             <div className='modal-header'>
             <h1>Settings</h1>
@@ -104,7 +104,7 @@ const CModal = ({show, onCloseModal, onFSubmit}) => {
                 <button className='ui button' type='button' onClick={()=>onCloseModal()}>Back</button>
                 <button className='ui blue button' type='button' onClick={()=>onPressSubmit()}>Submit</button>
             </div>
-            </div>
+            
             </div>
         </div>
     );
