@@ -25,7 +25,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: my-first-ecr-repo
-          #d-t-repo
+          #d-t-repo 
           #docker_number_game_demo
           IMAGE_TAG: number_game_demo_image
         run: |
